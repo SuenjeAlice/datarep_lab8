@@ -16,6 +16,8 @@ import {Navbar, Nav} from 'react-bootstrap';
 
 //import BrowserRouter, Switch and Route to be able to navigate between components
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { Create } from './components/create';
+import { Read } from './components/read';
 
 //changed from function to class and inherited from Component 
 class App extends Component{
@@ -42,8 +44,8 @@ class App extends Component{
         <Switch>
           {/* used Route to define the paths to the components*/}
           <Route path = '/' component={Content} exact/>
-          <Route path = '/create' component={Header} exact/>
-          <Route path = '/read' component={Footer} exact/>
+          <Route path = '/create' component={Create} exact/>
+          <Route path = '/read' component={Read} exact/>
           <Route path = '/extra' component={Extra} exact/>
         </Switch>
 
