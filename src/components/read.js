@@ -1,12 +1,17 @@
 //Data Representation & Querying - Lab 3 - G00363332 - Sünje Alice Winteler
 import React from 'react';
+
+//imported Movies class
 import { Movies } from './movies';
 const { Component } = require("react");
 
 //created a Read class which inherits from Component, used export keyword to export the class
 export class Read extends Component{
 
+    //used object 'state' to store data associated with this component
     state = {
+        //created movies array and added JSON data to array
+        //movies is an array of objects
         movies: [
             {
             "Title": "Avengers: Infinity War",
@@ -37,6 +42,7 @@ export class Read extends Component{
         return(
             <div>
                 <h1>This is the read component.</h1>
+                {/*used Movies and create variable movies and passed informatiion from movies array to it */}
                 <Movies movies={this.state.movies}></Movies>
             </div>
         );

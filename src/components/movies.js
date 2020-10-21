@@ -1,5 +1,7 @@
 //Data Representation & Querying - Lab 3 - G00363332 - Sünje Alice Winteler
 import React from 'react';
+
+//imported MovieItem
 import { MovieItem } from './movieitem';
 const { Component } = require("react");
 
@@ -7,8 +9,10 @@ const { Component } = require("react");
 export class Movies extends Component{
     //used render method
     render(){
-        //map function and arrow function
+        //used props for property and movies to access movies variable in Read class
+        //used map function to pull array apart and arrow function 
         return this.props.movies.map( (movie)=>{
+            //used MovieItem and created movie variable and passed individual movie object into it
             return <MovieItem movie = {movie}></MovieItem>
         })
             

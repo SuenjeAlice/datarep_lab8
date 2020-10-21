@@ -1,5 +1,7 @@
 //Data Representation & Querying - Lab 3 - G00363332 - Sünje Alice Winteler
 import React from 'react';
+
+//imported Card from React Bootstrap
 import Card from 'react-bootstrap/Card';
 const { Component } = require("react");
 
@@ -9,12 +11,16 @@ export class MovieItem extends Component {
     render() {
         return (
             <div>
+                {/*Used Card template from React Bootstrap */}
                 <Card>
+                    {/*used props.movie to access individual movie object, used .Title to access Title of movie object */}
                     <Card.Header>{this.props.movie.Title}</Card.Header>
                     <Card.Body>
                         <blockquote className="blockquote mb-0">
+                            {/* used props.movie to access individual movie object, used .Poster to access Poster of movie object*/}
                             <img src={this.props.movie.Poster} width="200" height="200"></img>
                             <footer className="blockquote-footer">
+                                {/*used props.movie to access individual movie object, used .Year to access Year of movie object */}
                                 {this.props.movie.Year}
                             </footer>
                         </blockquote>
