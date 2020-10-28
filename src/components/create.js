@@ -5,12 +5,12 @@ const { Component } = require("react");
 //created a Create class which inherits from Component, used export keyword to export the class
 export class Create extends Component{
 
-    //constructor
+    //added a constructor
     constructor(){
-        //
+        //invoke super keyword
         super();
 
-        //binds
+        //binding 
         this.onSubmit = this.onSubmit.bind(this);
         this.onChangeTitle = this.onChangeTitle.bind(this);
         this.onChangeYear = this.onChangeYear.bind(this);
@@ -32,6 +32,7 @@ export class Create extends Component{
         })
     }
 
+    //onChangeYear with argument e
     onChangeYear(e){
         //update state
         this.setState({
@@ -39,6 +40,7 @@ export class Create extends Component{
         })
     }
 
+    //onChangePoster with argument e
     onChangePoster(e){
         //update state
         this.setState({
@@ -50,6 +52,7 @@ export class Create extends Component{
     onSubmit(e){
         //prevents from calling button multiple times
         e.preventDefault();
+        //alert to test code
         alert("Movie: " + this.state.Title);
     }
 
@@ -61,19 +64,23 @@ export class Create extends Component{
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Add Movie Title: </label>
+                        {/*input uses onChange to call onChangeTitle method, the value is set to this.state.Titel*/}
                         <input type='text' className='form-control' value={this.state.Title} onChange={this.onChangeTitle}></input>
                     </div>
                     <div className="form-group">
                         <label>Add Movie Year: </label>
+                        {/*input uses onChange to call onChangeYear method, the value is set to this.state.Year*/}
                         <input type='text' className='form-control' value={this.state.Year} onChange={this.onChangeYear}></input>
                     </div>
                     <div className="form-group">
                         <label>Add Movie Poster: </label>
+                        {/*input uses onChange to call onChangePoster method, the value is set to this.state.Poster*/}
                         <textarea type='text' className='form-control' value={this.state.Poster} onChange={this.onChangePoster}>
 
                         </textarea>
                     </div>
                     <div className='form-group'>
+                        {/*Submit Button*/}
                         <input type='submit' value='Add Movie' className='btn btn-dark'></input>
                     </div>
                 </form>

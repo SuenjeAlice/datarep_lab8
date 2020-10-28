@@ -1,5 +1,7 @@
 //Data Representation & Querying - Lab 4 - G00363332 - Sünje Alice Winteler
 import React from 'react';
+
+//imported Axios
 import axios from 'axios';
 
 //imported Movies class
@@ -18,10 +20,14 @@ export class Read extends Component{
 
     //lifecycle hook, gets called every time the component is in view
     componentDidMount(){
+        //use get method to get data at url
         axios.get('https://jsonblob.com/api/jsonblob/520c3b5e-0312-11eb-a6af-cbf00d776032')
+        //callback functions, then gets executed if the promise is fulfilled, catch if there is an error
         .then((response)=>{
                 //updates movies array
-                this.setState({movies: response.data.Search})
+                this.setState({
+                    movies: response.data.Search
+                })
         })
         .catch((error)=>{ 
             console.log(error)
