@@ -1,5 +1,8 @@
-//Data Representation & Querying - Lab 4 - G00363332 - Sünje Alice Winteler
+//Data Representation & Querying - Lab 6 - G00363332 - Sünje Alice Winteler
 import React from 'react';
+
+//
+import axios from 'axios';
 const { Component } = require("react");
 
 //created a Create class which inherits from Component, used export keyword to export the class
@@ -54,6 +57,20 @@ export class Create extends Component{
         e.preventDefault();
         //alert to test code
         alert("Movie: " + this.state.Title);
+
+        const newMovie = {
+            title: this.state.Title,
+            year: this.state.Year,
+            poster: this.state.Poster
+        }
+
+        axios.post('http://localhost:4000/api/movies', newMovie)
+        .then((res)=>{
+            console.log(res);
+        })
+        .catch((err)=>{
+            console.log(err);
+        });
     }
 
     //used render method
