@@ -1,12 +1,14 @@
+//Data Representation & Querying - Lab 6 - G00363332 - Sünje Alice Winteler
 const express = require('express')
 const app = express()
 const port = 4000
 
 //include cors library
 const cors = require('cors');
-//
+//include bodyParser
 const bodyParser = require("body-parser");
 
+//add use method for cors
 app.use(cors());
 
 app.use(function(req, res, next) {
@@ -17,16 +19,19 @@ app.use(function(req, res, next) {
     next();
     });
 
+    //add use method for bodyParser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+//used get method
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-
+//used get method
 app.get('/api/movies', (req, res) => {
-    const mymovies = [
+  //variable mymovies with JOSON data  
+  const mymovies = [
         {
             "Title":"Avengers: Infinity War",
             "Year":"2018",
@@ -57,13 +62,16 @@ app.get('/api/movies', (req, res) => {
             
     ];
 
+    //sending back json data and status message
     res.status(200).json({
         message: "Everything is good",
         movies:mymovies
         })
 })
 
+//listening for post request
 app.post('/api/movies', (req, res) => {
+    //console log newMovie items
     console.log('Movie Recieved!');
     console.log(req.body.title);
     console.log(req.body.year);

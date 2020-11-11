@@ -20,7 +20,7 @@ export class Read extends Component{
 
     //lifecycle hook, gets called every time the component is in view
     componentDidMount(){
-        //use get method to get data at url
+        //use get method to get data at url (from server)
         axios.get('http://localhost:4000/api/movies')
         //callback functions, then gets executed if the promise is fulfilled, catch if there is an error
         .then((response)=>{

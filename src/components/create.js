@@ -1,7 +1,7 @@
 //Data Representation & Querying - Lab 6 - G00363332 - Sünje Alice Winteler
 import React from 'react';
 
-//
+//imported axios
 import axios from 'axios';
 const { Component } = require("react");
 
@@ -58,17 +58,21 @@ export class Create extends Component{
         //alert to test code
         alert("Movie: " + this.state.Title);
 
+        //created variable and add key value pairs
         const newMovie = {
             title: this.state.Title,
             year: this.state.Year,
             poster: this.state.Poster
         }
 
+        //used post method to send newMovie to server
         axios.post('http://localhost:4000/api/movies', newMovie)
         .then((res)=>{
+            //console log responds
             console.log(res);
         })
         .catch((err)=>{
+            //console log error
             console.log(err);
         });
     }
