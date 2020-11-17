@@ -26,7 +26,7 @@ export class Read extends Component{
         .then((response)=>{
                 //updates movies array
                 this.setState({
-                    movies: response.data.movies
+                    movies: response.data
                 })
         })
         .catch((error)=>{ 
