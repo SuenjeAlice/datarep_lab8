@@ -1,4 +1,4 @@
-//Data Representation & Querying - Lab 6 - G00363332 - Sünje Alice Winteler
+//Data Representation & Querying - Lab 7 - G00363332 - Sünje Alice Winteler
 const express = require('express')
 const app = express()
 const port = 4000
@@ -7,7 +7,7 @@ const port = 4000
 const cors = require('cors');
 //include bodyParser
 const bodyParser = require("body-parser");
-//
+//include mongoose
 const mongoose = require('mongoose');
 
 //add use method for cors
@@ -21,22 +21,25 @@ app.use(function(req, res, next) {
     next();
     });
 
-    //add use method for bodyParser
+//add use method for bodyParser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//connect
+//connected to mongoDB database
 const myConnectionString = 'mongodb+srv://admin:admin@cluster0.z6v7i.mongodb.net/movies?retryWrites=true&w=majority';
 mongoose.connect(myConnectionString, {useNewUrlParser: true});
 
+//created a mongoose Schema
 const Schema = mongoose.Schema;
 
+//created a movieSchema and add parameters
 var movieSchema = new Schema({
   title:String,
   year:String,
   poster:String
 });
 
+//used movieSchema to create a Model 
 var MovieModel = mongoose.model("movie", movieSchema);
 
 //used get method
@@ -46,6 +49,8 @@ app.get('/', (req, res) => {
 
 //used get method
 app.get('/api/movies', (req, res) => {
+  
+  //Old Version Code
   //variable mymovies with JOSON data  
   // const mymovies = [
   //       {
@@ -79,11 +84,12 @@ app.get('/api/movies', (req, res) => {
   //   ];
 
 
-      //
+      //find data
       MovieModel.find((err, data)=> {
         res.json(data)
       })
 
+    //Old Version Code
     //sending back json data and status message
 //     res.status(200).json({
 //         message: "Everything is good",
@@ -91,10 +97,11 @@ app.get('/api/movies', (req, res) => {
 //         })
 })
 
-//
+//used get method
 app.get('/api/movies/:id', (req, res)=>{
     console.log(req.params.id);
-
+    
+    //find movie by ID
     MovieModel.findById(req.params.id, (err, data) => {
       res.json(data);
     })
@@ -109,6 +116,7 @@ app.post('/api/movies', (req, res) => {
     console.log(req.body.year);
     console.log(req.body.poster);
 
+    //used create method to create data
     MovieModel.create({
       title: req.body.title,
       year:req.body.year,
