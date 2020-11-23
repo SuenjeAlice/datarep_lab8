@@ -3,7 +3,10 @@ import React from 'react';
 
 //imported Card from React Bootstrap
 import Card from 'react-bootstrap/Card';
+//
+import {Link} from 'react-router-dom';
 const { Component } = require("react");
+
 
 //created a MovieItem class which inherits from Component, used export keyword to export the class
 export class MovieItem extends Component {
@@ -25,6 +28,7 @@ export class MovieItem extends Component {
                             </footer>
                         </blockquote>
                     </Card.Body>
+                    <Link to={"/edit/" + this.props.movie._id} className="btn btn-dark">Edit</Link>
                 </Card>
             </div>
         );

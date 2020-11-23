@@ -5,8 +5,8 @@ import React from 'react';
 import axios from 'axios';
 const { Component } = require("react");
 
-//created a Create class which inherits from Component, used export keyword to export the class
-export class Create extends Component{
+//created a Edit class which inherits from Component, used export keyword to export the class
+export class Edit extends Component{
 
     //added a constructor
     constructor(){
@@ -25,6 +25,24 @@ export class Create extends Component{
             Year: '',
             Poster: ''
         }
+    }
+
+    //lifecycle hook
+    componentDidMount(){
+        console.log(this.props.match.params.id);
+
+        axios.get('http://localhost:4000/api/movies/' + this.props.match.params.id)
+        .then(response => {
+            this.setState({
+                _id:response.data._id,
+                Title:response.data.title,
+                Year:response.data.year,
+                Poster:response.data.poster
+            })
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
     }
 
     //onChangeTitle with argument e
@@ -62,20 +80,27 @@ export class Create extends Component{
         const newMovie = {
             title: this.state.Title,
             year: this.state.Year,
-            poster: this.state.Poster
+            poster: this.state.Poster,
+            _id: this.state._id
         }
 
-        //used post method to send newMovie to server
-        axios.post('http://localhost:4000/api/movies', newMovie)
-        .then((res)=>{
-            //console log responds
-            console.log(res);
+        axios.put('http://localhost:4000/api/movies/' + this.state._id, newMovie)
+        .then(res => {
+            console.log(res.data)
         })
-        .catch((err)=>{
-            //console log error
-            console.log(err);
-        });
-    }
+        .catch();
+
+        //used post method to send newMovie to server
+    //     axios.post('http://localhost:4000/api/movies', newMovie)
+    //     .then((res)=>{
+    //         //console log responds
+    //         console.log(res);
+    //     })
+    //     .catch((err)=>{
+    //         //console log error
+    //         console.log(err);
+    //     });
+}
 
     //used render method
     render(){
@@ -102,7 +127,7 @@ export class Create extends Component{
                     </div>
                     <div className='form-group'>
                         {/*Submit Button*/}
-                        <input type='submit' value='Add Movie' className='btn btn-dark'></input>
+                        <input type='submit' value='Edit Movie' className='btn btn-dark'></input>
                     </div>
                 </form>
             </div>

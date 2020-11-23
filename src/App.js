@@ -18,6 +18,7 @@ import {Navbar, Nav} from 'react-bootstrap';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { Create } from './components/create';
 import { Read } from './components/read';
+import { Edit } from './components/edit';
 
 //changed from function to class and inherited from Component 
 class App extends Component{
@@ -35,7 +36,6 @@ class App extends Component{
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/read">Read</Nav.Link>
             <Nav.Link href="/create">Create</Nav.Link>
-            <Nav.Link href="/extra">Extra</Nav.Link>
           </Nav>
         </Navbar>
 
@@ -45,9 +45,9 @@ class App extends Component{
           {/* used Route to define the paths to the components*/}
           <Route path = '/' component={Content} exact/>
           {/* changed path to Create and Read instead of Header and Footer*/}
-          <Route path = '/create' component={Create} exact/>
-          <Route path = '/read' component={Read} exact/>
-          <Route path = '/extra' component={Extra} exact/>
+          <Route path = '/create' component={Create} />
+          <Route path = '/read' component={Read} />
+          <Route path = '/edit/:id' component={Edit} />
         </Switch>
 
       </div>
