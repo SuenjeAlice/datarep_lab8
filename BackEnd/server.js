@@ -1,4 +1,4 @@
-//Data Representation & Querying - Lab 7 - G00363332 - Sünje Alice Winteler
+//Data Representation & Querying - Lab 8 - G00363332 - Sünje Alice Winteler
 const express = require('express')
 const app = express()
 const port = 4000
@@ -107,11 +107,12 @@ app.get('/api/movies/:id', (req, res)=>{
     })
 })
 
-//
+//used put method
 app.put('/api/movies/:id', (req, res)=>{
     console.log("Update movie: " + req.params.id);
     console.log(req.body);
 
+    //used findByIdAndUpdate to update data
     MovieModel.findByIdAndUpdate(req.params.id, req.body, {new: true}, 
       (err,data)=>{
           res.send(data);
